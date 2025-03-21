@@ -10,7 +10,7 @@ const Home = () => {
     const [selectedEventType, setSelectedEventType] = useState("Both")
     const [searchValue, setSearchValue] = useState('')
 
-    const filterByTagsAndTitle = data?.filter((event) => event.title === searchValue || event.eventTags.find(tags => tags === searchValue))
+    const filterByTagsAndTitle = data?.filter((event) => event.title.toLowerCase() === searchValue.toLowerCase() || event.eventTags.find(tags => tags.toLowerCase() === searchValue.toLowerCase()))
     console.log(filterByTagsAndTitle?.length)
 
     const filteredEvents = filterByTagsAndTitle?.length > 0 && filterByTagsAndTitle || (selectedEventType === "Both" ? data : data?.filter(event => event.eventType === selectedEventType))
